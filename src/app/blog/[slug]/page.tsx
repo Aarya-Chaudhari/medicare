@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { formatDate } from '@/lib/utils';
 
 interface BlogSlugPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -16,7 +16,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: BlogSlugPageProps) {
-  const post = blogPosts.find((p) => p.slug === params.slug);
+  const { slug } = await params;
+  const post = blogPosts.find((p) => p.slug === slug);
   if (!post) return {};
   
   return {
@@ -25,8 +26,9 @@ export async function generateMetadata({ params }: BlogSlugPageProps) {
   };
 }
 
-export default function BlogPostPage({ params }: BlogSlugPageProps) {
-  const post = blogPosts.find((p) => p.slug === params.slug);
+export default async function BlogPostPage({ params }: BlogSlugPageProps) {
+  const { slug } = await params;
+  const post = blogPosts.find((p) => p.slug === slug);
 
   if (!post) {
     notFound();

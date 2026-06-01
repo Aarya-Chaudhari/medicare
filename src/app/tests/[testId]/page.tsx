@@ -3,9 +3,9 @@ import { tests } from '@/data/mock-data';
 import { notFound } from 'next/navigation';
 
 interface TestSlugPageProps {
-  params: {
+  params: Promise<{
     testId: string;
-  };
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -15,7 +15,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: TestSlugPageProps) {
-  const test = tests.find((t) => t.id === params.testId);
+  const { testId } = await params;
+  const test = tests.find((t) => t.id === testId);
   if (!test) return {};
   
   return {
@@ -24,8 +25,9 @@ export async function generateMetadata({ params }: TestSlugPageProps) {
   };
 }
 
-export default function TestDetailPage({ params }: TestSlugPageProps) {
-  const test = tests.find((t) => t.id === params.testId);
+export default async function TestDetailPage({ params }: TestSlugPageProps) {
+  const { testId } = await params;
+  const test = tests.find((t) => t.id === testId);
 
   if (!test) {
     notFound();

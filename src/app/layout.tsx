@@ -2,13 +2,7 @@ import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import './globals.css';
-
-
-/* layout.tsx */
-import Chatbot from './Chatbot';
-/* ... */
-< Chatbot />
-                
+import Chatbot from './chatbot';
 
 export const metadata: Metadata = {
   title: 'MediCare Diagnostics - Professional Healthcare Laboratory',
@@ -36,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-1">{children}</main>
+        <Chatbot />
         <Footer />
       </body>
     </html>

@@ -243,6 +243,8 @@ export const tests: Test[] = [
   },
 ];
 
+export const categories = Array.from(new Set(tests.map((test) => test.category)));
+
 export const packages: Package[] = [
   {
     id: 'basic',
