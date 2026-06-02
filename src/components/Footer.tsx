@@ -144,7 +144,7 @@ export default function Footer() {
       </div>
 
       {/* Floating Buttons */}
-      <div className="fixed bottom-4 right-4 flex flex-col space-y-3 z-40">
+      <div className="fixed bottom-4 left-4 z-40">
         <a
           href="https://wa.me/919876543210"
           target="_blank"
