@@ -6,8 +6,8 @@ export default function Chatbot() {
     <>
       <Script id="chatbot-config" strategy="afterInteractive">
         {`window.chatbotConfig = {
-  apiBase: "http://localhost:5001",
-  backendUrl: "http://localhost:5000",
+  apiBase: "https://customer-services-bot-1.onrender.com",
+  backendUrl: "https://customer-services-bot.onrender.com",
   chatToken: "36eefd50-5050-4948-9383-a56745dc2cb3",
 
   theme: {
@@ -33,7 +33,7 @@ export default function Chatbot() {
   }
 };`}
       </Script>
-      <Script src="http://localhost:5000/widget.js" strategy="afterInteractive" />
+      <Script src="https://customer-services-bot.onrender.com/widget.js" strategy="afterInteractive" />
     </>
   )
 }
