@@ -1,75 +1,39 @@
 'use client'
+import Script from 'next/script'
 
-import { useEffect } from 'react'
-
-const CHATBOT_CONFIG = {
-  apiBase: 'http://localhost:5001',
-  backendUrl: 'http://localhost:5000',
-  chatToken: '41dcad8b-955b-48c6-823e-65218181019e',
+export default function Chatbot() {
+  return (
+    <>
+      <Script id="chatbot-config" strategy="afterInteractive">
+        {`window.chatbotConfig = {
+  apiBase: "http://localhost:5001",
+  backendUrl: "http://localhost:5000",
+  chatToken: "36eefd50-5050-4948-9383-a56745dc2cb3",
 
   theme: {
-    primaryColor: '#0066cc',
-    secondaryColor: '#eef2ff',
-    position: 'right',
-    title: 'AI Chat Assistant',
-    toggleText: 'AI Chat',
+    primaryColor: "#191268",
+    secondaryColor: "#eef2ff",
+    position: "right",
+    title: "AI Chat Assistant",
+    toggleText: "AI Chat"
   },
 
   chat: {
-    backgroundColor: '#ffffff',
-    textColor: '#111827',
+    backgroundColor: "#ffffff",
+    textColor: "#111827"
   },
 
   texts: {
-    welcome: 'Welcome to TEST..! How can I assist you today?',
+    welcome: "👋 Welcome to Medicare..! How can I assist you today?"
   },
 
   menu: {
     enabled: true,
-    options: [
-      { label: 'Know about products or services', value: 'products' },
-      { label: 'Talk to our team / Schedule appointment', value: 'appointment' },
-    ],
-  },
-} as const
-
-const WIDGET_SCRIPT_ID = 'medicare-chatbot-widget'
-const WIDGET_SRC = `${CHATBOT_CONFIG.backendUrl}/widget.js`
-
-declare global {
-  interface Window {
-    chatbotConfig?: typeof CHATBOT_CONFIG
-    __CHATBOT_WIDGET_LOADED__?: boolean
+    options: [{"label":"Know about products or services","value":"products"},{"label":"Get quotation or pricing","value":"pricing"},{"label":"Get support for existing product/service","value":"support"},{"label":"Need information or have a question","value":"question"},{"label":"Talk to our team / Schedule appointment","value":"appointment"}]
   }
-}
-
-function removeExistingWidget() {
-  document
-    .querySelectorAll(`script[src^="${WIDGET_SRC}"], #${WIDGET_SCRIPT_ID}`)
-    .forEach((element) => element.remove())
-
-  document
-    .querySelectorAll(
-      '.chatbot-window, .chatbot-toggle, #chatbot-style, #chatbot-fa, #csatFeedbackModal'
-    )
-    .forEach((element) => element.remove())
-
-  delete window.__CHATBOT_WIDGET_LOADED__
-}
-
-export default function Chatbot() {
-  useEffect(() => {
-    removeExistingWidget()
-    window.chatbotConfig = CHATBOT_CONFIG
-
-    const script = document.createElement('script')
-    script.id = WIDGET_SCRIPT_ID
-    script.src = `${WIDGET_SRC}?v=medicare-two-options-${Date.now()}`
-    script.async = true
-    document.body.appendChild(script)
-
-    return removeExistingWidget
-  }, [])
-
-  return null
+};`}
+      </Script>
+      <Script src="http://localhost:5000/widget.js" strategy="afterInteractive" />
+    </>
+  )
 }
