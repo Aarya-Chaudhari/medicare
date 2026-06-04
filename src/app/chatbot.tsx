@@ -8,10 +8,10 @@ export default function Chatbot() {
         {`window.chatbotConfig = {
   apiBase: "https://customer-services-bot-1.onrender.com",
   backendUrl: "https://customer-services-bot.onrender.com",
-  chatToken: "36eefd50-5050-4948-9383-a56745dc2cb3",
+  chatToken: "41dcad8b-955b-48c6-823e-65218181019e",
 
   theme: {
-    primaryColor: "#191268",
+    primaryColor: "#0066cc",
     secondaryColor: "#eef2ff",
     position: "right",
     title: "AI Chat Assistant",
@@ -24,12 +24,12 @@ export default function Chatbot() {
   },
 
   texts: {
-    welcome: "👋 Welcome to Medicare..! How can I assist you today?"
+    welcome: "👋 Welcome to MediCare..! How can I assist you today?"
   },
 
   menu: {
     enabled: true,
-    options: [{"label":"Know about products or services","value":"products"},{"label":"Get quotation or pricing","value":"pricing"},{"label":"Get support for existing product/service","value":"support"},{"label":"Need information or have a question","value":"question"},{"label":"Talk to our team / Schedule appointment","value":"appointment"}]
+    options: [{"label":"Know about products or services","value":"products"},{"label":"Talk to our team / Schedule appointment","value":"appointment"}]
   }
 };`}
       </Script>
